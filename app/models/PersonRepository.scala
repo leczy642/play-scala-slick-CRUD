@@ -119,6 +119,6 @@ class PersonRepository @Inject() (dbConfigProvider: DatabaseConfigProvider)(impl
     **/
 
   def insertSample (): Future[Int] = db.run {
-    people.map(p => (p.name, p.age)) += ("John", 25)
+    people.map(p => (p.name, p.age)) +=("Bond", 25)
   }
 }
