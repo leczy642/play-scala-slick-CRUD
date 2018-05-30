@@ -96,6 +96,15 @@ class PersonController @Inject()(repo: PersonRepository,
       }
   }
 
+  def sortPeople () = Action.async {
+    implicit request =>
+      repo.sort ().map { people =>
+        Ok(Json.toJson(people))
+
+      }
+  }
+
+
 }
 
 /**
