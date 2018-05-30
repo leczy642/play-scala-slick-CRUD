@@ -121,4 +121,11 @@ class PersonRepository @Inject() (dbConfigProvider: DatabaseConfigProvider)(impl
   def insertSample (): Future[Int] = db.run {
     people.map(p => (p.name, p.age)) +=("Bond", 25)
   }
+
+  //This sorts by age in descending
+  def sort (): Future[Seq[Person]] = db.run {
+    people.sortBy(p => (p.age.desc, p.name)).result
+  }
+
+
 }
