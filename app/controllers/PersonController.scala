@@ -104,7 +104,35 @@ class PersonController @Inject()(repo: PersonRepository,
       }
   }
 
+  def aggPeople () = Action.async {
+    implicit request =>
+      repo.aggMax().map { people =>
+        Ok(Json.toJson(people))
+      }
+  }
 
+  def aggPeopleMin () = Action.async {
+    implicit request =>
+      repo.aggMin().map { people =>
+        Ok(Json.toJson(people))
+
+      }
+  }
+
+  def aggPeopleSum() = Action.async {
+    implicit request =>
+      repo.aggSum().map { people =>
+        Ok(Json.toJson(people))
+
+      }
+  }
+
+  def aggPeopleAvg() = Action.async {
+    implicit request =>
+      repo.aggavg().map { people =>
+        Ok(Json.toJson(people))
+      }
+  }
 }
 
 /**
