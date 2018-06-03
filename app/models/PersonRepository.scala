@@ -127,5 +127,35 @@ class PersonRepository @Inject() (dbConfigProvider: DatabaseConfigProvider)(impl
     people.sortBy(p => (p.age.desc, p.name)).result
   }
 
+  //this function is for aggregation.. aggMax returns maximun
+  def aggMax (): Future[Option[Int]]  = db.run {
+    //people.filter(p => p.name === name).result
+    // people.map(_.age).max.result
+    people.map(_.age).max.result
+  }
+
+  //this function returns minimun
+  def aggMin (): Future[Option[Int]] = db.run {
+    people.map(_.age).min.result
+  }
+  /***
+    * we want to say select age where name is somename
+    * */
+
+  def aggSum (): Future[Option[Int]] = db.run{
+    people.map(_.age).sum.result
+  }
+
+  def aggavg (): Future[Option[Int]] = db.run{
+    people.map(_.age).avg.result
+  }
+
+    /**the equivalent sql statement is select * from table
+      where name == somename
+      def selColumn (name: String): Future[Int] = db.run {
+
+      people.filter(p => p.name === name).map(p => (p.age)).result
+  }
+      **/
 
 }
